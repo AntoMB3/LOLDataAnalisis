@@ -18,6 +18,7 @@ def GetChampsNamesAndMasteries(lista) -> list:
             if(champsData[champData]["key"] == str(id)):
                 infoCampeon.append(champsData[champData]["id"])
                 infoCampeon.append(champ["championPoints"])
+                infoCampeon.append(champsData[champData]["tags"])
                 break
         
         campeones.append(infoCampeon)
