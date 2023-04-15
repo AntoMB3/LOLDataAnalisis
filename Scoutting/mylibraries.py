@@ -34,7 +34,7 @@ def getMatchList(puuid : str, cantidadPartidas: int = 20,queque: int = None, ind
     url = "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/"+puuid
     i = 0
     while(i <= int(cantidadPartidas/100)):
-        if(i <= 0):
+        if(cantidadPartidas <= 100):
             parametros = "ids?start="+str(index)+"&count="+str(cantidadPartidas)+"&api_key="+creds.riot_API_Key
             url_completa = url+"/"+parametros
             response = requests.get(url_completa)
@@ -42,24 +42,20 @@ def getMatchList(puuid : str, cantidadPartidas: int = 20,queque: int = None, ind
         else:
             new_index = 100*i #0-99
             if(cantidadPartidas < 100*(i+1)):
-                new_cantidad = 100*(i+1)-cantidadPartidas
+                new_cantidad = cantidadPartidas-100*(i)
             else:
                 new_cantidad = 100
             parametros = "ids?start="+str(new_index)+"&count="+str(new_cantidad)+"&api_key="+creds.riot_API_Key
             url_completa = url+"/"+parametros
             response = requests.get(url_completa)
-            partidasExtra = response.json()
+            partidasExtra = list(response.json())
             for partidaExtra in partidasExtra:
                 partidas.append(partidaExtra)
         i += 1
     
-    print(len(partidas))
-
+    return partidas
     
 def GetMatchInfo(region: str,match_id):
     region = region.lower()
     info_partida = connection.match.by_id(region = region, match_id=match_id)
     return info_partida
-
-
-getMatchList('_ROPUnorv3aVovk2pvxxKOpkipZxHUZJH-yOToXlJLZ7397Ubg0R_NJS3H4rG_RjgpidV1dVBkveOA',500)
