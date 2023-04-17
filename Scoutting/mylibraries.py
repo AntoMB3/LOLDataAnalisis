@@ -32,26 +32,57 @@ def GetChampsNamesAndMasteries(lista) -> list:
 def getMatchList(puuid : str, cantidadPartidas: int = 20,queque: int = None, index : int = 0):
     partidas = []
     url = "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/"+puuid
-    i = 0
-    while(i <= int(cantidadPartidas/100)):
-        if(cantidadPartidas <= 100):
-            parametros = "ids?start="+str(index)+"&count="+str(cantidadPartidas)+"&api_key="+creds.riot_API_Key
-            url_completa = url+"/"+parametros
-            response = requests.get(url_completa)
-            partidas = list(response.json())
-        else:
-            new_index = 100*i #0-99
-            if(cantidadPartidas < 100*(i+1)):
-                new_cantidad = cantidadPartidas-100*(i)
+    if(queque is None):
+        i = 0
+        while(i <= int(cantidadPartidas/100)):
+            if(cantidadPartidas <= 100):
+                parametros = "ids?start="+str(index)+"&count="+str(cantidadPartidas)+"&api_key="+creds.riot_API_Key
+                url_completa = url+"/"+parametros
+                response = requests.get(url_completa)
+                partidas = list(response.json())
+                if(len(partidas) == 0):
+                    break
             else:
-                new_cantidad = 100
-            parametros = "ids?start="+str(new_index)+"&count="+str(new_cantidad)+"&api_key="+creds.riot_API_Key
-            url_completa = url+"/"+parametros
-            response = requests.get(url_completa)
-            partidasExtra = list(response.json())
-            for partidaExtra in partidasExtra:
-                partidas.append(partidaExtra)
-        i += 1
+                new_index = 100*i #0-99
+                if(cantidadPartidas < 100*(i+1)):
+                    new_cantidad = cantidadPartidas-100*(i)
+                else:
+                    new_cantidad = 100
+                parametros = "ids?start="+str(new_index)+"&count="+str(new_cantidad)+"&api_key="+creds.riot_API_Key
+                url_completa = url+"/"+parametros
+                response = requests.get(url_completa)
+                partidasExtra = list(response.json())
+                if(len(partidasExtra) == 0):
+                    break
+                for partidaExtra in partidasExtra:
+                    partidas.append(partidaExtra)
+            i += 1
+    
+    else:
+        i = 0
+        while(i <= int(cantidadPartidas/100)):
+            if(cantidadPartidas <= 100):
+                parametros = "ids?queue="+str(queque)+"&start="+str(index)+"&count="+str(cantidadPartidas)+"&api_key="+creds.riot_API_Key
+                url_completa = url+"/"+parametros
+                response = requests.get(url_completa)
+                partidas = list(response.json())
+                if(len(partidas) == 0):
+                    break
+            else:
+                new_index = 100*i #0-99
+                if(cantidadPartidas < 100*(i+1)):
+                    new_cantidad = cantidadPartidas-100*(i)
+                else:
+                    new_cantidad = 100
+                parametros = "ids?queue="+str(queque)+"&start="+str(index)+"&count="+str(new_cantidad)+"&api_key="+creds.riot_API_Key
+                url_completa = url+"/"+parametros
+                response = requests.get(url_completa)
+                partidasExtra = list(response.json())
+                if(len(partidasExtra) == 0):
+                    break
+                for partidaExtra in partidasExtra:
+                    partidas.append(partidaExtra)
+            i += 1
     
     return partidas
     
@@ -59,3 +90,5 @@ def GetMatchInfo(region: str,match_id):
     region = region.lower()
     info_partida = connection.match.by_id(region = region, match_id=match_id)
     return info_partida
+
+print(getMatchList('_ROPUnorv3aVovk2pvxxKOpkipZxHUZJH-yOToXlJLZ7397Ubg0R_NJS3H4rG_RjgpidV1dVBkveOA', 300,420))
