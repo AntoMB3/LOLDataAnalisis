@@ -1,6 +1,6 @@
 #Shiny de graficos de jugadore
 
-pacman::p_load(ggplot2,shiny,tidyr)
+pacman::p_load(ggplot2,shiny,tidyr,shinythemes)
 
 ui <- fluidPage( theme = shinytheme("sandstone"),
   titlePanel("Graficas de campeones"),
@@ -23,12 +23,12 @@ ui <- fluidPage( theme = shinytheme("sandstone"),
       actionButton("submitbutton", "Submit", class = "btn btn-primary")
       ),
       mainPanel(
-        tags$h1("Header 1"),
+        tags$h1("Analisis de Scoutting"),
         
         fluidRow(
           column (width = 6,
                   sidebarPanel(
-                    h3("Resultados"),
+                    h3("Info"),
                     tableOutput(outputId = "tableData")
                   )),
           
