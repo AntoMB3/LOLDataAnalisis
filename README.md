@@ -7,4 +7,4 @@ En R creamos una ShinyAPP para poder observar mejor las estadísticas.
 Pueden probar la ShinyApp -> https://uanvni-antonio-munoz.shinyapps.io/LolScoutting/
 Utilizar el CSV de prueba incluido en el repositorio!
 
-![Primera vista de la app](LOLDataAnalisis/ShinyApps/ScreenShots/1.png)
+![1](https://user-images.githubusercontent.com/56263378/234062280-d5f80953-5fd3-49db-a431-5bb41ee0cce7.png)
