@@ -6,3 +6,5 @@ En R creamos una ShinyAPP para poder observar mejor las estadísticas.
 
 Pueden probar la ShinyApp -> https://uanvni-antonio-munoz.shinyapps.io/LolScoutting/
 Utilizar el CSV de prueba incluido en el repositorio!
+
+![Primera vista de la app](https://ibb.co/f1wvhh9)
