@@ -1,5 +1,6 @@
 # Proyecto de análisis de LOL
 En este proyecto se realizaron actividades de webscrapping, procesesamiento de datos y tratamiento de la información para gráficas dinámicas.
+Se requiere tener acceso a la API oficial de RIOT para poder obtener la información de un jugador. Debido a las limitantes de la propia API solo se pueden hacer 100 llamadas por cada 2 min.
 
 A través de un script de python obtenemos toda la información necesaria y la escribimos en un .CSV para posteriormente pasarlo a R para su análisis y ploteo.
 En R creamos una ShinyAPP para poder observar mejor las estadísticas.
