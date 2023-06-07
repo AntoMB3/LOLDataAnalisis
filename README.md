@@ -1,4 +1,4 @@
-# Proyecto de análisis de LOL
+# Proyecto de análisis de League of Legends
 En este proyecto se realizaron actividades de webscrapping, procesesamiento de datos y tratamiento de la información para gráficas dinámicas.
 Se requiere tener acceso a la API oficial de RIOT para poder obtener la información de un jugador. Debido a las limitantes de la propia API solo se pueden hacer 100 llamadas por cada 2 min.
 
